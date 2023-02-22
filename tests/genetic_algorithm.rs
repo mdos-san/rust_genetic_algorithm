@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod genetic_algorithm {
-    use rust_genetic::{dna::Dna, genetic_algorithm::GeneticAlgorithm};
+    use rust_genetic_algorithm::{dna::Dna, genetic_algorithm::GeneticAlgorithm};
     use std::{
         collections::HashMap,
         sync::atomic::{AtomicUsize, Ordering},

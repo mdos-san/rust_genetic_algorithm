@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod dna {
     use rand::Rng;
-    use rust_genetic::dna::Dna;
+    use rust_genetic_algorithm::dna::Dna;
 
     #[test]
     fn can_do_a_crossover() {

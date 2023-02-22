@@ -1,5 +1,5 @@
 [package]
-name = "rust_genetic"
+name = "rust_genetic_algorithm"
 version = "0.1.0"
 edition = "2021"
 

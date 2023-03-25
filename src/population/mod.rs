@@ -1,7 +1,7 @@
 use crate::agent::Agent;
 
 pub struct Population<T> {
-    agents: Vec<Agent<T>>,
+    pub agents: Vec<Agent<T>>,
 }
 
 impl<T> Population<T> {

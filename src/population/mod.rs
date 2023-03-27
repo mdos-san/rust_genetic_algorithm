@@ -4,7 +4,10 @@ pub struct Population<T> {
     pub agents: Vec<Agent<T>>,
 }
 
-impl<T> Population<T> {
+impl<T> Population<T>
+where
+    T: Copy,
+{
     pub fn new(size: usize, generate_dna: fn() -> Vec<T>) -> Population<T> {
         let mut new_population = Population { agents: vec![] };
 

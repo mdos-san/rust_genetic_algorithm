@@ -14,7 +14,7 @@ where
     }
 
     pub fn from_parents(agent_1: &Agent<T>, agent_2: &Agent<T>) -> Agent<T> {
-        let mut child_dna = agent_1.dna.to_vec();
+        let mut child_dna = vec![];
 
         let mut rng = rand::thread_rng();
         for index in 0..agent_1.dna.len() {
@@ -52,6 +52,7 @@ pub mod tests {
         let child_agent = Agent::from_parents(&agent_1, &agent_2);
 
         assert_eq!(child_agent.fitness, 0.0);
+        assert_eq!(child_agent.dna.len(), 10);
         assert!(child_agent.dna.iter().any(|gene| *gene == 1));
         assert!(child_agent.dna.iter().any(|gene| *gene == 2));
     }

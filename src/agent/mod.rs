@@ -33,7 +33,7 @@ where
 }
 
 #[cfg(test)]
-pub mod tests {
+pub mod unit_tests {
     use crate::agent::Agent;
 
     #[test]

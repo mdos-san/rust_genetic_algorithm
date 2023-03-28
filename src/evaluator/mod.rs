@@ -17,7 +17,7 @@ impl<T, K> Evaluator<T, K> {
 }
 
 #[cfg(test)]
-pub mod tests {
+pub mod unit_tests {
     use crate::{agent::Agent, evaluator::Evaluator, population::Population};
 
     fn generate_dna() -> Vec<i32> {

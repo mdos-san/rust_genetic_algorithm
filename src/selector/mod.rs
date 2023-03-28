@@ -26,7 +26,7 @@ impl Selector {
 }
 
 #[cfg(test)]
-pub mod tests {
+pub mod unit_tests {
     use super::Selector;
     use crate::{agent::Agent, evaluator::Evaluator, population::Population};
 

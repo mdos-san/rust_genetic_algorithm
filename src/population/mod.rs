@@ -42,7 +42,7 @@ where
 }
 
 #[cfg(test)]
-pub mod tests {
+pub mod unit_tests {
     use crate::population::Population;
 
     fn generate_dna() -> Vec<i32> {

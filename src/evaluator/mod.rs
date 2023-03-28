@@ -9,7 +9,7 @@ impl<T, K> Evaluator<T, K> {
         return Evaluator { evaluate_agent };
     }
 
-    pub fn evaluate_population(self, population: &mut Population<T>, context: &mut K) {
+    pub fn evaluate_population(&self, population: &mut Population<T>, context: &mut K) {
         for agent in population.agents.iter_mut() {
             (self.evaluate_agent)(agent, context);
         }

@@ -9,7 +9,7 @@ impl Selector {
         Selector { selection_size }
     }
 
-    pub fn select_from_population<T>(self, population: &mut Population<T>) {
+    pub fn select_from_population<T>(&self, population: &mut Population<T>) {
         Selector::sort_agents_by_fitness_desc(population);
 
         while population.agents.len() > self.selection_size {

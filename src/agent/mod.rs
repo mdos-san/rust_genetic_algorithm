@@ -18,10 +18,12 @@ where
 
         let mut rng = rand::thread_rng();
         for index in 0..agent_1.dna.len() {
-            let gene = match rng.gen_range(0..2) {
-                0 => agent_1.dna.get(index).unwrap().clone(),
-                _ => agent_2.dna.get(index).unwrap().clone(),
+            let selected_agent = match rng.gen_range(0..2) {
+                0 => agent_1,
+                _ => agent_2,
             };
+            let gene = *selected_agent.dna.get(index).unwrap();
+
             child_dna.push(gene);
         }
 

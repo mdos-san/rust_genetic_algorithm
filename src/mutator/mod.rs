@@ -7,14 +7,14 @@ pub struct Mutator<T> {
 }
 
 impl<T> Mutator<T> {
-    fn new(mutate_agent: fn(agent: &mut Agent<T>), mutation_rate: f64) -> Mutator<T> {
+    pub fn new(mutate_agent: fn(agent: &mut Agent<T>), mutation_rate: f64) -> Mutator<T> {
         Mutator {
             mutate_agent,
             mutation_rate,
         }
     }
 
-    fn mutate(&self, agent: &mut Agent<T>) {
+    pub fn mutate(&self, agent: &mut Agent<T>) {
         let mut rng = rand::thread_rng();
         let should_mutate = rng.gen_bool(self.mutation_rate);
 

@@ -1,8 +1,11 @@
+use std::collections::HashMap;
+
 use rand::Rng;
 
 pub struct Agent<T> {
     pub fitness: f64,
     pub dna: Vec<T>,
+    pub metadata: HashMap<String, String>
 }
 
 impl<T> Agent<T>
@@ -10,7 +13,7 @@ where
     T: Copy,
 {
     pub fn new(dna: Vec<T>, fitness: f64) -> Agent<T> {
-        Agent { dna, fitness }
+        Agent { dna, fitness, metadata: HashMap::new() }
     }
 
     pub fn from_parents(agent_1: &Agent<T>, agent_2: &Agent<T>) -> Agent<T> {
@@ -30,6 +33,7 @@ where
         Agent {
             dna: child_dna,
             fitness: 0.0,
+            metadata: HashMap::new()
         }
     }
 }

@@ -27,16 +27,11 @@ where
     pub fn repopulate(&mut self) {
         let mut rng = rand::thread_rng();
 
-        while self.agents.len() < self.population_size {
-            let index_1 = rng.gen_range(0..(self.agents.len() - 1));
-            let index_2 = rng.gen_range(0..(self.agents.len() - 1));
+        for index_child in (self.population_size / 2)..self.population_size {
+            let index_parent_1 = rng.gen_range(0..(self.agents.len() - 1));
+            let index_parent_2 = rng.gen_range(0..(self.agents.len() - 1));
 
-            let agent_1 = self.agents.get(index_1).unwrap();
-            let agent_2 = self.agents.get(index_2).unwrap();
-
-            let new_agent = Agent::from_parents(agent_1, agent_2);
-
-            self.agents.push(new_agent);
+            Agent::from_parents(&mut self.agents, index_parent_1, index_parent_2, index_child);
         }
     }
 }
@@ -61,8 +56,8 @@ pub mod unit_tests {
     fn can_repopulate() {
         // Arrange
         let mut population = Population::new(1024, generate_dna);
-        for _ in 0..512 {
-            population.agents.remove(population.agents.len() - 1);
+        for i in 0..1024 {
+            population.agents.get_mut(i).unwrap().fitness = 42.0;
         }
 
         // Act
@@ -70,7 +65,7 @@ pub mod unit_tests {
 
         // Assert
         assert_eq!(population.agents.len(), 1024);
-        assert_eq!(population.agents.get(0).unwrap().dna.len(), 3);
-        assert_eq!(population.agents.get(1023).unwrap().dna.len(), 3);
+        assert_eq!(population.agents.get(0).unwrap().fitness, 42.0);
+        assert_eq!(population.agents.get(1023).unwrap().fitness, 0.0);
     }
 }

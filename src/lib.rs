@@ -29,7 +29,7 @@ where
     ) -> GeneticAlgorithm<T, K> {
         let population = Population::new(population_size, generate_dna);
         let evaluator = Evaluator::new(evaluate_agent);
-        let selector = Selector::new(population_size / 2);
+        let selector = Selector::new();
         let mutator = Mutator::new(mutate_agent, 0.1);
 
         GeneticAlgorithm {

@@ -1,23 +1,13 @@
 use crate::population::Population;
 
-pub struct Selector {
-    selection_size: usize,
-}
+pub struct Selector {}
 
 impl Selector {
-    pub fn new(selection_size: usize) -> Selector {
-        Selector { selection_size }
+    pub fn new() -> Selector {
+        Selector {}
     }
 
     pub fn select_from_population<T>(&self, population: &mut Population<T>) {
-        Selector::sort_agents_by_fitness_desc(population);
-
-        while population.agents.len() > self.selection_size {
-            population.agents.remove(population.agents.len() - 1);
-        }
-    }
-
-    fn sort_agents_by_fitness_desc<T>(population: &mut Population<T>) {
         population
             .agents
             .sort_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap());
@@ -49,16 +39,15 @@ pub mod unit_tests {
         let mut test_context = TestContext { counter: 1 };
         let evaluator = Evaluator::new(evaluate_agent);
         evaluator.evaluate_population(&mut population, &mut test_context);
-        let selector = Selector::new(512);
+        let selector = Selector::new();
 
         // Act
         selector.select_from_population(&mut population);
 
         // Assert
-        assert_eq!(population.agents.len(), 512);
+        assert_eq!(population.agents.len(), 1024);
         assert_eq!(population.agents.get(0).unwrap().fitness, 1024.0);
         assert_eq!(population.agents.get(1).unwrap().fitness, 1023.0);
         assert_eq!(population.agents.get(2).unwrap().fitness, 1022.0);
-        assert_eq!(population.agents.get(511).unwrap().fitness, 513.0);
     }
 }
